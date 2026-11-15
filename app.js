@@ -81,12 +81,19 @@ app.post('/login', async (req, res) => {
     }
 });
 
+// Escape HTML special characters before inserting user data into a page
+function escapeHtml(text) {
+    return String(text).replace(/[&<>"']/g, (c) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[c]);
+}
+
 // Dashboard route (protected)
 app.get('/dashboard', (req, res) => {
     if (!req.session.user) {
         return res.redirect('/');
     }
-    res.send(`Welcome ${req.session.user}! You are now logged in.`);
+    res.send(`Welcome ${escapeHtml(req.session.user)}! You are now logged in.`);
 });
 
 // Logout route
