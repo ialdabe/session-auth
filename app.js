@@ -61,14 +61,15 @@ app.post('/login', async (req, res) => {
         const user = users.find(user => user.username === username);
         
         if (!user) {
-            return res.status(400).send('User not found');
+            // Same message whether the user exists or not: do not reveal which usernames are registered
+            return res.status(401).send('Invalid username or password');
         }
 
         // Check password
         const validPassword = await bcrypt.compare(password, user.password);
         
         if (!validPassword) {
-            return res.status(400).send('Invalid password');
+            return res.status(401).send('Invalid username or password');
         }
 
         // Set session
