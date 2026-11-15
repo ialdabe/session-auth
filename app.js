@@ -22,7 +22,8 @@ app.use(express.static(__dirname + '/public'));
 app.use(session({
     secret: 'your-secret-key',
     resave: false,
-    saveUninitialized: true,
+    // Only create a session (and its cookie) once there is something to store, i.e. after login
+    saveUninitialized: false,
     store: MongoStore.create({
         mongoUrl: 'mongodb://localhost/auth_demo',
         ttl: 24 * 60 * 60 // 1 day
