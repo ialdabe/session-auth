@@ -4,8 +4,8 @@ Sesioetan oinarritutako autentifikazioaren adibidea: Express, express-session et
 
 Bi adar daude:
 
-- `basic`: erabiltzaileak memorian gordetzen dira.
-- `main`: erabiltzaileak eta sesioak MongoDBn gordetzen dira.
+- `basic-auth`: erabiltzaileak memorian gordetzen dira.
+- `mongo`: erabiltzaileak eta sesioak MongoDBn gordetzen dira.
 
 Adar honetan: Erabiltzaileak MongoDBn gordetzen dira (Mongoose) eta sesioak ere bai (connect-mongo).
 
